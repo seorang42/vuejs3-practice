@@ -1,4 +1,4 @@
 import { createApp } from 'vue';
-import App_CompositionAPI from './App_CompositionAPI.vue';
+import App from './App.vue';
 
-createApp(App_CompositionAPI).mount('#app');
+createApp(App).mount('#app');
