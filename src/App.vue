@@ -1,31 +1,39 @@
 <template>
-	<div :style="styleObject">
-		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus
-		nesciunt, facere nemo accusamus ex, dolor minima necessitatibus dolorem
-		maiores pariatur nam, expedita possimus voluptatum? Quia voluptates ex dolor
-		at quod!
+	<div>
+		<h2 v-if="visible">Hello Vue3!</h2>
+		<h2 v-else>false 입니다</h2>
+		<button v-on:click="visible = !visible">toggle</button>
+		<hr />
+		<button v-on:click="type = 'A'">A</button>
+		<button v-on:click="type = 'B'">B</button>
+		<button v-on:click="type = 'C'">C</button>
+		<button v-on:click="type = 'D'">D</button>
+
+		<h2 v-if="type === 'A'">A입니다</h2>
+		<h2 v-else-if="type === 'B'">B입니다</h2>
+		<h2 v-else-if="type === 'C'">C입니다</h2>
+		<h2 v-else>A, B, C가 아닙니다</h2>
+
+		<template v-if="visible">
+			<h1>Title</h1>
+			<p>Paragraph 1</p>
+			<p>Paragraph 2</p>
+		</template>
+
+		<h1 v-show="ok">Title 입니다</h1>
+		<button v-on:click="ok = !ok">toggle ok</button>
 	</div>
-	<button v-on:click="fontSize--">-</button>
-	<button v-on:click="fontSize++">+</button>
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 
 export default {
 	setup() {
-		/* const styleObject = reactive({
-			color: 'red',
-			fontSize: '13px',
-		}); */
-		const fontSize = ref(13);
-		const styleObject = computed(() => {
-			return {
-				color: 'red',
-				fontSize: fontSize.value + 'px',
-			};
-		});
-		return { styleObject, fontSize };
+		const visible = ref(true);
+		const type = ref('A');
+		const ok = ref(true);
+		return { visible, type, ok };
 	},
 };
 </script>
