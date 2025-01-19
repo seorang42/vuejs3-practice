@@ -1,39 +1,39 @@
 <template>
 	<div>
-		<h2 v-if="visible">Hello Vue3!</h2>
-		<h2 v-else>false 입니다</h2>
-		<button v-on:click="visible = !visible">toggle</button>
-		<hr />
-		<button v-on:click="type = 'A'">A</button>
-		<button v-on:click="type = 'B'">B</button>
-		<button v-on:click="type = 'C'">C</button>
-		<button v-on:click="type = 'D'">D</button>
-
-		<h2 v-if="type === 'A'">A입니다</h2>
-		<h2 v-else-if="type === 'B'">B입니다</h2>
-		<h2 v-else-if="type === 'C'">C입니다</h2>
-		<h2 v-else>A, B, C가 아닙니다</h2>
-
-		<template v-if="visible">
-			<h1>Title</h1>
-			<p>Paragraph 1</p>
-			<p>Paragraph 2</p>
-		</template>
-
-		<h1 v-show="ok">Title 입니다</h1>
-		<button v-on:click="ok = !ok">toggle ok</button>
+		<ul>
+			<template v-for="(item, index) in evenItems" :key="item.id"
+				><li v-if="item.id % 2 === 0">
+					index : {{ index }}, {{ item.message }}
+				</li></template
+			>
+		</ul>
+		<ul>
+			<li v-for="(value, key, index) in myObject" :key="key">
+				{{ index }}-{{ key }}-{{ value }}
+			</li>
+		</ul>
 	</div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { computed, reactive } from 'vue';
 
 export default {
 	setup() {
-		const visible = ref(true);
-		const type = ref('A');
-		const ok = ref(true);
-		return { visible, type, ok };
+		const items = reactive([
+			{ id: 1, message: 'Jave' },
+			{ id: 2, message: 'HTML' },
+			{ id: 3, message: 'CSS' },
+			{ id: 4, message: 'JavaScript' },
+		]);
+		const evenItems = computed(() => items.filter(item => item.id % 2 === 0));
+
+		const myObject = reactive({
+			title: '제목',
+			author: '홍길동',
+			publishedAt: '2025-01-19',
+		});
+		return { items, evenItems, myObject };
 	},
 };
 </script>
