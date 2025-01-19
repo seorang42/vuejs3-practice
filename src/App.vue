@@ -1,39 +1,28 @@
 <template>
+	<div v-memo="[views, likes]">
+		<p>subscribers : {{ subscribers }}</p>
+		<p>views : {{ views }}</p>
+		<p>likes : {{ likes }}</p>
+	</div>
+	<button @click="subscribers++">Subs++</button>
+	<button @click="views++">Views++</button>
+	<button @click="likes++">Likes++</button>
 	<div>
-		<ul>
-			<template v-for="(item, index) in evenItems" :key="item.id"
-				><li v-if="item.id % 2 === 0">
-					index : {{ index }}, {{ item.message }}
-				</li></template
-			>
-		</ul>
-		<ul>
-			<li v-for="(value, key, index) in myObject" :key="key">
-				{{ index }}-{{ key }}-{{ value }}
-			</li>
-		</ul>
+		<p>subscribers : {{ subscribers }}</p>
+		<p>views : {{ views }}</p>
+		<p>likes : {{ likes }}</p>
 	</div>
 </template>
 
 <script>
-import { computed, reactive } from 'vue';
+import { ref } from 'vue';
 
 export default {
 	setup() {
-		const items = reactive([
-			{ id: 1, message: 'Jave' },
-			{ id: 2, message: 'HTML' },
-			{ id: 3, message: 'CSS' },
-			{ id: 4, message: 'JavaScript' },
-		]);
-		const evenItems = computed(() => items.filter(item => item.id % 2 === 0));
-
-		const myObject = reactive({
-			title: '제목',
-			author: '홍길동',
-			publishedAt: '2025-01-19',
-		});
-		return { items, evenItems, myObject };
+		const subscribers = ref(4000);
+		const views = ref(400);
+		const likes = ref(20);
+		return { subscribers, views, likes };
 	},
 };
 </script>
