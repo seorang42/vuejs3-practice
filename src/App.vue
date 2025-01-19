@@ -1,8 +1,19 @@
 <template>
 	<div>
-		<p>{{ counter }}</p>
+		<h2>보간법</h2>
 		<p>{{ message }}</p>
-		<button v-on:click="increment">증가</button>
+		<p v-once>{{ message }}</p>
+		<button v-on:click="message = message + `!`">click</button>
+		<h2>v-html</h2>
+		<p>{{ rawHtml }}</p>
+		<p v-html="rawHtml"></p>
+		<h2>속성 바인딩</h2>
+		<div v-bind:title="dynamicTitle">마우스를 올려보세요</div>
+		<input type="text" value="홍길동" :disabled="isInputDisabled" />
+		<input type="text" v-bind="attrs" />
+		<h2>Javascript</h2>
+		{{ message.split('').reverse().join('') }}
+		{{ isInputDisabled ? '예' : '아니오' }}
 	</div>
 </template>
 
@@ -10,15 +21,24 @@
 import { ref } from 'vue';
 
 export default {
-	setup(props) {
-		console.log(props);
+	setup() {
+		const message = ref('안녕하세요');
+		const rawHtml = ref('<strong>안녕하세요</strong>');
+		const dynamicTitle = ref('안녕하세요');
+		const isInputDisabled = ref(true);
+		const attrs = ref({
+			type: 'password',
+			value: '12345678',
+			disabled: false,
+		});
 
-		const counter = ref(0);
-		const message = ref('Hello Vue3');
-		const increment = () => {
-			counter.value++;
+		return {
+			message,
+			rawHtml,
+			dynamicTitle,
+			isInputDisabled,
+			attrs,
 		};
-		return { counter, message, increment };
 	},
 };
 </script>
