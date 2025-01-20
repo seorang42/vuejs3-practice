@@ -1,18 +1,11 @@
 <template>
-	<div>
-		<TemplateRef></TemplateRef>
-	</div>
+	<main>
+		<DynamicComponent />
+	</main>
 </template>
 
-<script>
-import TemplateRef from './TemplateRef.vue';
-
-export default {
-	components: { TemplateRef },
-	setup() {
-		return {};
-	},
-};
+<script setup>
+import DynamicComponent from './\bDynamicComponent.vue';
 </script>
 
 <style lang="scss" scoped></style>

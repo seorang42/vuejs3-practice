@@ -3,6 +3,11 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
 	root: true,
+	parserOptions: {
+		parser: 'espree',
+		ecmaVersion: 2022,
+		sourceType: 'module',
+	},
 	extends: [
 		'plugin:vue/vue3-essential',
 		'eslint:recommended',
