@@ -8,7 +8,7 @@
 
 				<div class="row g-5">
 					<div v-for="post in posts" :key="post.id" class="col col-4">
-						<AppCard
+						<PostItem
 							:title="post.title"
 							:contents="post.contents"
 							:type="post.type"
@@ -37,17 +37,15 @@
 
 <script>
 import { reactive, ref } from 'vue';
-import AppCard from './AppCard.vue';
 import PostCreate from './PostCreate.vue';
 import LabelInput from './LabelInput.vue';
-import LabelTitle from './LabelTitle.vue';
-import UsernameInput from './UsernameInput.vue';
+import PostItem from './PostItem.vue';
 
 export default {
 	components: {
-		AppCard,
 		PostCreate,
 		LabelInput,
+		PostItem,
 	},
 	setup() {
 		const obj = reactive({
